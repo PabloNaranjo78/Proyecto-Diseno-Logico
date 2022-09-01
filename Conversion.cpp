@@ -29,6 +29,15 @@ int Conversion::count(int num) {
     this->len = count;
 }
 
-bool Conversion::isValid(int num) {
+bool Conversion::isValid(float num) {
+    float fraction=0;
+    int n =-1;
+   while(num > 0){
+       fraction += trunc(num*10) * pow(8, n);
+       num = (num * 10) - trunc(num*10);
+       n--;
+   }
+   decimal+=fraction;
+   std::cout <<  decimal << std::endl;
 
 }

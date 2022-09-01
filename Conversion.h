@@ -9,6 +9,7 @@
 #include <string>
 #include <sstream>
 #include <math.h>
+#include <cmath>
 
 class Conversion {
 public:
@@ -16,11 +17,11 @@ public:
 
     int count (int num);
     int toDecimal(int num);
-    bool isValid(int num);
+    bool isValid(float num);
 
 private:
     int len;
-    int decimal;
+    float decimal;
 };
 
 
