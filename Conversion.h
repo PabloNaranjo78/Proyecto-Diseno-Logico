@@ -17,11 +17,14 @@ public:
 
     int count (int num);
     int toDecimal(int num);
-    bool isValid(float num);
+    bool isValid(int num);
+    bool composition(int num);
+
 
 private:
     int len;
     float decimal;
+    std::string validValues = "1234567";
 };
 
 
