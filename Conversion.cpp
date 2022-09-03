@@ -9,48 +9,45 @@ Conversion::Conversion() {
 
 }
 
-int Conversion::toDecimal(int num){
-    this->count(num);
-    for (int i = 0; i < len; ++i) {
-            decimal += (num%10)*pow(8,i);
-        num = (int)num/10;
-    }
-    std::cout << decimal << std::endl;
-
-    return 0;
-}
-
-int Conversion::count(int num) {
-    int count = 0;
-    while (num != 0){
-        num = num/10;
-        count++;
-    }
-    this->len = count;
-}
-
-bool Conversion::isValid(int num){
-    this->count(num);
-    if (composition(num) and num <= 777){
+bool Conversion::isValid(std::string num){
+    this->number = std::stoi(num);
+    if (composition(num) and this->number > 0 and this->number <= 777){
         std::cout <<  "Radio Check" << std::endl;
+        this->count();
         return true;
     } else{
         return false;
     }
 }
 
-bool Conversion::composition(int num) {
-    std::string aux =std::to_string(num);
-
-    for (char i : aux) {
+bool Conversion::composition(std::string num) {
+    for (char i : num) {
         if (validValues.find(i) == std::string::npos) {
             return false;
         }
     }
     return true;
-
 }
 
+void Conversion::count() {
+    int aux = this->number;
+    int count = 0;
+    while (aux != 0){
+        aux = aux/10;
+        count++;
+    }
+    this->len = count;
+}
+
+int Conversion::toDecimal(std::string aux){
+    int num = std::stoi(aux);
+    for (int i = 0; i < len; ++i) {
+        decimal += (num%10)*pow(8,i);
+        num = (int)num/10;
+    }
+    std::cout << decimal << std::endl;
+    return 0;
+}
 
 //bool Conversion::isValid(float num) {
 //    float fraction=0;

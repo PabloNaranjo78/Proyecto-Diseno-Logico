@@ -15,16 +15,41 @@ class Conversion {
 public:
     Conversion();
 
-    int count (int num);
-    int toDecimal(int num);
-    bool isValid(int num);
-    bool composition(int num);
+    /**
+     * Checks if the number that is
+     * going to be be processed is valid
+     * @param number number to be validated
+     * @return if the number is valid
+     */
+    bool isValid(std::string num);
 
+    /**
+     * Checks if all the digits of
+     * a number are on the octal range
+     * @param num number to be checked
+     * @return if the number is valid
+     */
+    bool composition(std::string num);
+
+    /**
+     * Counts the among of digits
+     * of a number
+     */
+    void count ();
+
+    /**
+     * Converts an octal number to
+     * a decimal number.
+     * @param num octal number
+     * @return octal to decimal conversion
+     */
+    int toDecimal(std::string num);
 
 private:
     int len;
-    float decimal;
-    std::string validValues = "1234567";
+    int decimal;
+    int number;
+    std::string validValues = "01234567";
 };
 
 

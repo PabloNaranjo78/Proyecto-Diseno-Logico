@@ -3,7 +3,7 @@
 
 int main() {
     Conversion hp = Conversion();
-//    hp.toDecimal(326);
-    hp.isValid(777);
+    hp.isValid("0000000");
+    hp.toDecimal("00000026");
     return 0;
 }
