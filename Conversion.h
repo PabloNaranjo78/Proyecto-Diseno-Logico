@@ -51,6 +51,10 @@ public:
      */
     void toBinary();
 
+    /**
+     * Converts a decimal number to
+     * a hexadecimal number
+     */
     void toHexadecimal();
 
 private:

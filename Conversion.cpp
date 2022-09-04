@@ -11,7 +11,12 @@ Conversion::Conversion() {
 
 bool Conversion::isValid(std::string num){
     this->number = std::stoi(num);
-    if (composition(num) and this->number > 0 and this->number <= 777){
+    if (composition(num) and this->number >= 0 and this->number <= 777){
+        if (this->number == 0){
+            decimal = 0;
+            binary = 0;
+            hexadecimal = "0";
+        }
         std::cout <<  "Radio Check" << std::endl;
         this->count();
         return true;
@@ -40,10 +45,8 @@ void Conversion::count() {
 }
 
 int Conversion::toDecimal(std::string aux){
-
     int num = std::stoi(aux), count = 0;
     for (int i = 0; i < len; ++i) {
-//        std::cout << (num%10)*pow(8,i) << std::endl;
         count += (num%10)*pow(8,i);
         num = (int)num/10;
     }
@@ -65,7 +68,6 @@ void Conversion::toBinary() {
     std::cout << binary << std::endl;
 }
 
-
 void Conversion::toHexadecimal() {
     int aux = decimal, i = 0;
     char hexa[100];
@@ -83,23 +85,9 @@ void Conversion::toHexadecimal() {
     }
     for (int j = i - 1; j >= 0; j--){
         hexadecimal+=hexa[j];
-//        std::cout << hexa[j] << std::endl;
     }
     std::cout << hexadecimal << std::endl;
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 //bool Conversion::isValid(float num) {
