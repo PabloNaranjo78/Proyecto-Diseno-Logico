@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import GUI.MainWindow as MainWindow
+from tkinter import *
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+width = 1000
+height = 600
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    master = Tk()
+    master.title("Proyecto Diseño Lógico")
+    master.geometry(str(width) + "x" + str(height))
+    master.resizable(False,False)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    background = PhotoImage(file="Images/Background.gif")
+    graph_img = PhotoImage(file="Images/graph.gif")
+
+    mainWindow = MainWindow.MainWindow(master=master, width=width,
+                                       height=height,background=background,
+                                       graph_img=graph_img)
+    master.mainloop()
