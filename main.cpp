@@ -3,7 +3,10 @@
 
 int main() {
     Conversion hp = Conversion();
-    hp.isValid("0000000");
-    hp.toDecimal("00000026");
+    hp.isValid("354");
+    hp.toDecimal("354");
+    hp.toBinary();
+    hp.toHexadecimal();
     return 0;
+
 }

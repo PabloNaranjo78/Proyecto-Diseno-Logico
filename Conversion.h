@@ -45,10 +45,20 @@ public:
      */
     int toDecimal(std::string num);
 
+    /**
+     * Converts a decimal number to
+     * a binary number
+     */
+    void toBinary();
+
+    void toHexadecimal();
+
 private:
     int len;
     int decimal;
+    int binary;
     int number;
+    std::string hexadecimal;
     std::string validValues = "01234567";
 };
 
