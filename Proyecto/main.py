@@ -19,8 +19,10 @@ if __name__ == '__main__':
     #                                    graph_img=graph_img)
     # master.mainloop()
     bases = hp.Bases()
-    bases.to_decimal("643")
-    bases.to_binary(bases.get_decimal())
-    bases.get_binary()
-    bases.to_hexadecimal(bases.get_decimal())
-    bases.get_hexadecimal()
+
+    print(bases.conversion("643")[0])
+    print(bases.conversion("643")[1])
+    print(bases.conversion("643")[2])
+
+
+

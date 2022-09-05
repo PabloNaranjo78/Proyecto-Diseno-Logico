@@ -16,10 +16,9 @@ class Bases:
 
         if (self.composition(num) and 0 <= self.number <= 777):
             self.length = len(str(self.number))
-
             if self.number == 0:
                 self.decimal = 0
-                self.binary = 0
+                self.binary = "0"
                 self.hexadecimal = "0"
             return True
         else:
@@ -53,14 +52,21 @@ class Bases:
             remainder = num % 16
             hexa = self.conversion_table[remainder] + hexa
             num = num // 16
-
         self.hexadecimal = hexa
 
     def get_decimal(self):
         return self.decimal
 
     def get_binary(self):
-        return self.binary
+        aux = self.binary
+        self.binary = ""
+        return aux
 
     def get_hexadecimal(self):
         return self.hexadecimal
+
+    def conversion(self, num):
+        self.to_decimal(num)
+        self.to_binary(self.get_decimal())
+        self.to_hexadecimal(self.get_decimal())
+        return (self.get_decimal(), self.get_binary(), self.get_hexadecimal())
