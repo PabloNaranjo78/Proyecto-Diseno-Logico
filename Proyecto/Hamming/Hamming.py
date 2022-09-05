@@ -2,8 +2,8 @@
 # hamming code
 
 class Hamming:
-	def __init__(self, data):
 
+	def start(self, data):
 
 		# Calculate the no of Redundant Bits Required
 		m = len(data)
@@ -33,6 +33,8 @@ class Hamming:
 		# 	print("There is no error in the received message.")
 		# else:
 		# 	print("The position of error is ", len(arr) - correction + 1, "from the left")
+
+		return arr
 
 	def calcRedundantBits(self, m):
 
@@ -143,6 +145,8 @@ class Hamming:
 
 
 if __name__ == "__main__":
-	hamming = Hamming('101100101110')
+	hamming = Hamming()
+	hamming.start('101100101110')
+
 
 
