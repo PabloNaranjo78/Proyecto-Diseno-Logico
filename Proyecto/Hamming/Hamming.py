@@ -4,6 +4,8 @@
 class Hamming:
 
 	correctHamming=''
+	paridadPar = True
+
 
 	def start(self, data):
 
@@ -13,7 +15,7 @@ class Hamming:
 		arr = self.posRedundantBits(data, r)
 		arr = self.calcParityBits(arr, r)
 
-		print("Data transferred (calcParityBits) is ", arr)
+		print(arr)
 
 		self.correctHamming=arr
 		return arr
@@ -42,6 +44,7 @@ class Hamming:
 
 
 	def calcParityBits(self, arr, r):
+
 		n = len(arr)
 
 		auxCheck=''
@@ -86,38 +89,32 @@ class Hamming:
 	def chekParity(self, arr):
 		count = arr.count('1')
 
-		if count%2==1:
-			arr = arr.replace("p","1")
+		if self.paridadPar:
+			if count%2==1:
+				arr = arr.replace("p","1")
+			else:
+				arr = arr.replace("p","0")
 		else:
-			arr = arr.replace("p","0")
+			if count%2==1:
+				arr = arr.replace("p","0")
+			else:
+				arr = arr.replace("p","1")
 
 		return arr
 
 
-
-
-	def detectError(self, newArr):
-
-		# n = len(arr)
-		# res = 0
-		#
-		# # Calculate parity bits again
-		# for i in range(nr):
-		# 	val = 0
-		# 	for j in range(1, n + 1):
-		# 		if(j & (2**i) == (2**i)):
-		# 			val = val ^ int(arr[-1 * j])
-		#
-		# 	# Create a binary no by appending
-		# 	# parity bits together.
-		#
-		# 	res = res + val*(10**i)
-
-		# Convert binary to decimal
-		return int(str(1), 2)
-
 	def calcParityBitsForError(self, newArr):
 		n = len(newArr)
+		newArrOriginal= newArr
+		bits = [newArr[0],newArr[1],newArr[3],newArr[7],newArr[15]]
+
+		newArr = newArr[:0] + 'p' + newArr[0 + 1:]
+		newArr = newArr[:1] + 'p' + newArr[1 + 1:]
+		newArr = newArr[:3] + 'p' + newArr[3 + 1:]
+		newArr = newArr[:7] + 'p' + newArr[7 + 1:]
+		newArr = newArr[:15]+ 'p' + newArr[15+ 1:]
+
+		# print(newArr)
 
 		auxCheck=''
 		movementsList=[]
@@ -134,25 +131,68 @@ class Hamming:
 					auxCheck += ' '
 
 
-			posPAuxCheck = 2**i-1
-			# print("pos es", posPAuxCheck, "y arr es", arr)
-			auxCheck=self.chekParity(auxCheck)
-			# newArr = newArr.replace('p', self.correctHamming[posPAuxCheck], 1)
 			movementsList.append(auxCheck)
 			auxCheck=''
 
 
-		movementsList[0] = movementsList[0].replace('p',' ')
+		# movementsList[0] = movementsList[0].replace('p',' ')
 		# print("Los movimientos realizados son", movementsList)
+		movementsList[0]=newArrOriginal
+		movementsList[1] = movementsList[1].replace('p', bits[0])
+		movementsList[2] = movementsList[2].replace('p', bits[1])
+		movementsList[3] = movementsList[3].replace('p', bits[2])
+		movementsList[4] = movementsList[4].replace('p', bits[3])
+		movementsList[5] = movementsList[5].replace('p', bits[4])
 
 		print(movementsList)
-		return movementsList
+
+		testParity = []
+		testParity.append([1,''])
+
+		testParity.append(self.checkIfError(movementsList[1],int(bits[0])))
+		testParity.append(self.checkIfError(movementsList[2],int(bits[1])))
+		testParity.append(self.checkIfError(movementsList[3],int(bits[2])))
+		testParity.append(self.checkIfError(movementsList[4],int(bits[3])))
+		testParity.append(self.checkIfError(movementsList[5],int(bits[4])))
+
+		print(testParity)
+
+
+		indexError = (testParity[1][1] * 2**0) +(testParity[2][1] * 2**1) +(testParity[3][1] * 2**2) +(testParity[4][1] * 2**3) +(testParity[5][1] * 2**4)
+		# print("La posicion del error es", indexError)
+
+		if indexError==0:
+			indexError='No hay error'
+		else:
+			indexError = 'La posicion del error es ' + str(indexError)
+
+		print(indexError)
+		return [movementsList, testParity, indexError]
+
+	def checkIfError(self, str, aux):
+		count = str.count('1')
+
+		if str[aux] == 1:
+			if count%2==0:
+				return ['Error', 1]
+			else:
+				return ['Correcto',0]
+		else:
+			if count%2==1:
+				return ['Error', 1]
+			else:
+				return ['Correcto',0]
+
+
+
 
 
 if __name__ == "__main__":
 	hamming = Hamming()
-	hamming.start('101100101110')
-	# hamming.calcParityBitsForError('00011111010011010')
+	var = hamming.start('101100101110')
+	aux	= '10110110001011100'
+
+	hamming.calcParityBitsForError(aux)
 
 
 
