@@ -59,8 +59,6 @@ class Bases:
             addition += num
             self.binary = addition
 
-
-
     def to_hexadecimal(self, num):
         hexa = ""
         while (num > 0):
