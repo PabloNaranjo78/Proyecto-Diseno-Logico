@@ -51,6 +51,16 @@ class Bases:
             self.to_binary(num // 2)
         self.binary += str(num % 2)
 
+    def complete_binary(self, num):
+        if len(num) != 0:
+            addition = ""
+            for i in range(0, 9-len(num)):
+                addition += "0"
+            addition += num
+            self.binary = addition
+
+
+
     def to_hexadecimal(self, num):
         hexa = ""
         while (num > 0):
@@ -63,6 +73,7 @@ class Bases:
         return self.decimal
 
     def get_binary(self):
+        self.complete_binary(self.binary)
         aux = self.binary
         self.binary = ""
         return aux
