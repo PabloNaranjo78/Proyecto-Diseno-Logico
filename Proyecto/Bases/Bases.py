@@ -19,7 +19,7 @@ class Bases:
 
         self.number = int(num)
 
-        if (self.composition(num) and 0 <= self.number <= 777):
+        if (self.composition(num) and 0 <= self.number <= 7777):
             self.length = len(str(self.number))
             if self.number == 0:
                 self.decimal = 0
@@ -54,7 +54,7 @@ class Bases:
     def complete_binary(self, num):
         if len(num) != 0:
             addition = ""
-            for i in range(0, 9-len(num)):
+            for i in range(0, 12-len(num)):
                 addition += "0"
             addition += num
             self.binary = addition

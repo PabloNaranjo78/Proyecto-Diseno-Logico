@@ -40,12 +40,12 @@ class MainWindow:
             self.create_graphics(self.results[1])
             print(self.results)
 
-            self.canvas.create_rectangle(750, 100, 950, 300, fill="white")
+            self.canvas.create_rectangle(750, 100, 980, 300, fill="white")
 
-            self.canvas.create_text(850, 130, text="Octal = " + str(temp_var), font="Arial 15")
-            self.canvas.create_text(850, 170, text="Decimal = " + str(self.results[0]), font="Arial 15")
-            self.canvas.create_text(850, 210, text="Hexadecimal = " + str(self.results[2]), font="Arial 15")
-            self.canvas.create_text(850, 250, text="Binario = " + str(self.results[1]), font="Arial 15")
+            self.canvas.create_text(867, 130, text="Octal = " + str(temp_var), font="Arial 15")
+            self.canvas.create_text(867, 170, text="Decimal = " + str(self.results[0]), font="Arial 15")
+            self.canvas.create_text(867, 210, text="Hexadecimal = " + str(self.results[2]), font="Arial 15")
+            self.canvas.create_text(867, 250, text="Binario = " + str(self.results[1]), font="Arial 15")
 
         else:
             messagebox.showerror(message="El texto insertado no corresponde a un "
