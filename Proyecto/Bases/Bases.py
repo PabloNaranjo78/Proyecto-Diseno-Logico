@@ -12,6 +12,11 @@ class Bases:
                                 14: 'E', 15: 'F'}
 
     def is_valid(self, num):
+
+        for i in num:
+            if i not in "01234567":
+                return False
+
         self.number = int(num)
 
         if (self.composition(num) and 0 <= self.number <= 777):
