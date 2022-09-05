@@ -172,25 +172,42 @@ class Hamming:
 	def checkIfError(self, str, aux):
 		count = str.count('1')
 
-		if str[aux] == 1:
-			if count%2==0:
-				return ['Error', 1]
+		if self.paridadPar:
+
+			if str[aux] == 1:
+				if count%2==0:
+					return ['Error', 1]
+				else:
+					return ['Correcto',0]
 			else:
-				return ['Correcto',0]
+				if count%2==1:
+					return ['Error', 1]
+				else:
+					return ['Correcto',0]
+
 		else:
-			if count%2==1:
-				return ['Error', 1]
+
+			if str[aux] == 1:
+				if count % 2 == 0:
+					return ['Error', 0]
+				else:
+					return ['Correcto', 1]
 			else:
-				return ['Correcto',0]
-
-
-
+				if count % 2 == 1:
+					return ['Error', 0]
+				else:
+					return ['Correcto', 1]
 
 
 if __name__ == "__main__":
 	hamming = Hamming()
 	var = hamming.start('101100101110')
-	aux	= '10110110001011100'
+
+	if hamming.paridadPar:
+		aux	= '10110110001011100'
+
+	else:
+		aux = '01100111001011110'
 
 	hamming.calcParityBitsForError(aux)
 
